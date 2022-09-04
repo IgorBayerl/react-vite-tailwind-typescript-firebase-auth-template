@@ -1,4 +1,4 @@
-# ReactJS + Vite + TailwindCSS + Firebase auth
+# ReactJS + Vite + TailwindCSS + TypeScript + Firebase auth
 
 This is a good starting point for your next project that needs firebase auth
 
