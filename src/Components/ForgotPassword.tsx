@@ -87,7 +87,7 @@ export default function ForgotPassword() {
                 className="font-medium text-indigo-600 hover:text-indigo-500"
                 to="/login"
               >
-                Already have an account?
+                Back to login
               </Link>
             </div>
           </form>
