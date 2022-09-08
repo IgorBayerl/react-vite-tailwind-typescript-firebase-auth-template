@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../contexts/AuthContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { LockClosedIcon } from '@heroicons/react/20/solid'
@@ -9,10 +9,14 @@ import { SocialSignIn } from './SocialSignIn'
 export default function Login() {
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
-  const { login } = useAuth()
+  const { login, currentUser } = useAuth()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (currentUser) navigate('/')
+  }, [])
 
   async function handleSubmit(e: { preventDefault: () => void }) {
     e.preventDefault()

@@ -8,25 +8,26 @@ import ForgotPassword from './ForgotPassword'
 import UpdateProfile from './UpdateProfile'
 import Projects from './Projects'
 import { ToastProvider } from '../contexts/ToastContext'
+import { ApiProvider } from '../contexts/ApiContext'
 import 'react-toastify/dist/ReactToastify.min.css'
+import AppContextProviders from '../contexts/AppContextProvider'
 
 function App() {
+  const providers = [ToastProvider, AuthProvider, ApiProvider]
   return (
     <Router>
-      <AuthProvider>
-        <ToastProvider>
-          <Routes>
-            <Route element={<PrivateRoutes />}>
-              <Route element={<Dashboard />} path="/" />
-              <Route path="/update-profile" element={<UpdateProfile />} />
-              <Route path="projects" element={<Projects />} />
-            </Route>
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-          </Routes>
-        </ToastProvider>
-      </AuthProvider>
+      <AppContextProviders components={providers}>
+        <Routes>
+          <Route element={<PrivateRoutes />}>
+            <Route element={<Dashboard />} path="/" />
+            <Route path="/update-profile" element={<UpdateProfile />} />
+            <Route path="projects" element={<Projects />} />
+          </Route>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+        </Routes>
+      </AppContextProviders>
     </Router>
   )
 }
